@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "SmartAqua",
+    "slug": "smart-aqua",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "packages": "com.smart.aqua",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.paololalap.smartaqua"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "permissions": {
+      "mediaLibrary": {
+        "read": true,
+        "write": true
+      }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2f7c9982-4563-427e-9b13-0d14031d5b99"
+      }
+    }
+  }
+}
