@@ -56,14 +56,15 @@ const CustomDrawerContent = () => {
         {
           text: 'Logout',
           onPress: () => {
-            firebase.auth().signOut()
-              .then(() => {
-                NativeModules.DevSettings.reload();
-              })
-              .catch((error) => {
-                console.error('Error signing out:', error);
-              });
-          },
+          firebase.auth()
+            .signOut()
+            .then(() => {
+              Restart.Restart();
+            })
+            .catch((error) => {
+              console.error('Error signing out:', error);
+            });
+        },
           style: 'destructive',
         },
       ],

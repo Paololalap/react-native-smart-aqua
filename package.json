@@ -1,6 +1,6 @@
 {
   "name": "smartaqua",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
@@ -22,6 +22,7 @@
     "@react-navigation/stack": "^6.3.18",
     "expo": "~49.0.8",
     "expo-image-picker": "~14.3.2",
+    "expo-linear-gradient": "~12.3.0",
     "expo-status-bar": "~1.6.0",
     "firebase": "^10.4.0",
     "react": "18.2.0",
