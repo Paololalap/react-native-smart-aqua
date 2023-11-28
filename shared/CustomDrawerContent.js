@@ -118,24 +118,6 @@ const CustomDrawerContent = () => {
           <Text style={styles.drawerItemText}>Data Analysis</Text>
         </Pressable>
         <Pressable
-          onPress={() => navigateToScreen('TaskScreen')}
-          style={({ pressed }) => [
-            styles.drawerItem,
-            pressed ? { backgroundColor: '#4E96A9' } : null,
-          ]}
-        >
-          <Text style={styles.drawerItemText}>Tasks List</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => navigateToScreen('AccountSettings')}
-          style={({ pressed }) => [
-            styles.drawerItem,
-            pressed ? { backgroundColor: '#4E96A9' } : null,
-          ]}
-        >
-          <Text style={styles.drawerItemText}>Account Settings</Text>
-        </Pressable>
-        <Pressable
           onPress={() => navigateToScreen('About')}
           style={({ pressed }) => [
             styles.drawerItem,

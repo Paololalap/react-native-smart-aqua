@@ -4,8 +4,6 @@ import HomeScreen from '../screens/HomeScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RealTimeMonitoring from '../screens/RealTimeMonitoring';
-import TaskScreen from '../screens/TaskScreen';
-import AccountSettings from '../screens/AccountSettings';
 import About from '../screens/AboutScreen';
 import DataAnalysis from '../screens/DataAnalysis';
 
@@ -41,22 +39,6 @@ const HomeStack = () => {
         component={RealTimeMonitoring}
         options={{
           title: 'Real-time Monitoring', 
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="TaskScreen"
-        component={TaskScreen}
-        options={{
-          title: 'Tasks List', 
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="AccountSettings"
-        component={AccountSettings}
-        options={{
-          title: 'Account Settings', 
           headerShown: false,
         }}
       />

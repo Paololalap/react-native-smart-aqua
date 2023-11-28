@@ -54,32 +54,6 @@ export default function App() {
             <Text style={styles.labelText}>Data Analysis</Text>
           </View>
         </Pressable>
-        <Pressable
-          onPress={() => navigateToScreen('TaskScreen')}
-          style={({ pressed }) => [
-            styles.box,
-            {
-              opacity: pressed ? 0.7 : 1, // Change opacity on press
-            },
-          ]}>
-          <View style={styles.iconAndText}>
-            <Icon name="checksquare" size={35} color="#4E96A9" />
-            <Text style={styles.labelText}>Tasks list</Text>
-          </View>
-        </Pressable>
-        <Pressable
-          onPress={() => navigateToScreen('AccountSettings')}
-          style={({ pressed }) => [
-            styles.box,
-            {
-              opacity: pressed ? 0.7 : 1, // Change opacity on press
-            },
-          ]}>
-          <View style={styles.iconAndText}>
-            <Icon name="setting" size={35} color="#4E96A9" />
-            <Text style={styles.labelText}>Account Settings</Text>
-          </View>
-        </Pressable>
       </View>
     </ScrollView>
   );
