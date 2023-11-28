@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Pressable, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { NativeModules } from "react-native";
+import Restart from 'react-native-restart';
 import { firebase } from './firebase';
 import 'firebase/storage';
 
