@@ -17,7 +17,6 @@ import { firebase } from "../shared/firebase";
 
 export default function LoginScreen({
   onLoginSuccess,
-  onRegisterSuccess,
   onGuestUser,
 }) {
   const [email, setEmail] = useState("");
@@ -147,10 +146,6 @@ export default function LoginScreen({
     }
   };
 
-  const handleRegister = () => {
-    onRegisterSuccess();
-  };
-
   const handleGuestUser = () => {
     onGuestUser();
   };
@@ -187,14 +182,12 @@ export default function LoginScreen({
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={handleGuestUser}>
         <View style={styles.imageContainer}>
           <Image
             source={require("../assets/logo.png")}
             style={{ width: 200, height: 200, resizeMode: "contain" }}
           />
         </View>
-      </Pressable>
       <Text style={styles.text}>Email:</Text>
       <TextInput
         value={email}
@@ -219,11 +212,11 @@ export default function LoginScreen({
         ]}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </Pressable>
-        <Pressable onPress={handleRegister} style={({ pressed }) => [
+        <Pressable onPress={handleGuestUser} style={({ pressed }) => [
           styles.registerButton,
           { backgroundColor: pressed ? 'rgba(123, 170, 19, 0.7)' : '#7BAA13' },
         ]}>
-          <Text style={styles.buttonText}>REGISTER</Text>
+          <Text style={styles.buttonText}>Login as Guest</Text>
         </Pressable>
       </View>
       <Pressable onPress={forgetPassword}>
