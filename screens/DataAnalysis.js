@@ -2,18 +2,17 @@ import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import Plotly from 'react-native-plotly';
 import { Picker } from '@react-native-picker/picker';
-import Sdata from '../Sdata.json'; // Import your JSON data
-import Pdata from '../Pdata.json'; // Import predicted data
+import axios from 'axios'; // Import axios
 
 const DataAnalysis = () => {
   const [chartDimensions, setChartDimensions] = useState({ width: 0, height: 0 });
-  const [selectedOption, setSelectedOption] = useState('Temperature'); // Default selection
-  const [dataX, setDataX] = useState([]); // Store x data
-  const [dataY, setDataY] = useState([]); // Store y data
-  const [predictedData, setPredictedData] = useState([]); // Store predicted data
-  const [predictedUpperBounds, setPredictedUpperBounds] = useState([]); // Store predicted upper bounds
-  const [predictedLowerBounds, setPredictedLowerBounds] = useState([]); // Store predicted lower bounds
-  const [interpretation, setInterpretation] = useState(""); // Interpretation text
+  const [selectedOption, setSelectedOption] = useState('Temperature');
+  const [dataX, setDataX] = useState([]);
+  const [dataY, setDataY] = useState([]);
+  const [predictedData, setPredictedData] = useState([]);
+  const [predictedUpperBounds, setPredictedUpperBounds] = useState([]);
+  const [predictedLowerBounds, setPredictedLowerBounds] = useState([]);
+  const [interpretation, setInterpretation] = useState("");
 
   useEffect(() => {
     // Calculate the chart container dimensions
@@ -24,94 +23,112 @@ const DataAnalysis = () => {
 
     setChartDimensions({ width: chartWidth, height: chartHeight });
 
-    // Extract and set measured data
-    const extractedData = [];
-    const extractedDateData = [];
+    // Fetch data from the provided URL using axios
+    axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter')
+      .then(response => {
+        const fetchedData = response.data;
 
-    for (const item of Sdata) {
-      if (selectedOption === 'Temperature') {
-        extractedData.push(parseFloat(item.Temperature)); // Parse Temperature as a float
-      } else if (selectedOption === 'pH') {
-        extractedData.push(parseFloat(item.PH)); // Parse pH as a float
-      } else if (selectedOption === 'Turbidity') {
-        extractedData.push(parseFloat(item.TURBIDITY)); // Parse Turbidity as a float
-      } else if (selectedOption === 'Dissolved Oxygen') {
-        extractedData.push(parseFloat(item.LDO)); // Parse Dissolved Oxygen as a float
-      }
-      extractedDateData.push(item.Date);
-    }
+        // Extract and set measured data
+        const extractedData = [];
+        const extractedDateData = [];
 
-    setDataX(extractedData);
-    setDataY(extractedDateData);
+        for (const item of fetchedData) {
+          if (selectedOption === 'Temperature') {
+            extractedData.push(parseFloat(item.Temperature)); // Parse Temperature as a float
+          } else if (selectedOption === 'pH') {
+            extractedData.push(parseFloat(item.PH)); // Parse pH as a float
+          } else if (selectedOption === 'Turbidity') {
+            extractedData.push(parseFloat(item.TURBIDITY)); // Parse Turbidity as a float
+          } else if (selectedOption === 'Dissolved Oxygen') {
+            extractedData.push(parseFloat(item.LDO)); // Parse Dissolved Oxygen as a float
+          }
+          extractedDateData.push(item.Date);
+        }
 
-    // Extract and set predicted data and bounds
-    const extractedPredictedData = [];
-    const extractedPredictedUpperBounds = [];
-    const extractedPredictedLowerBounds = [];
+        setDataX(extractedData);
+        setDataY(extractedDateData);
 
-    for (const item of Pdata) {
-      if (selectedOption === 'Temperature') {
-        extractedPredictedData.push(parseFloat(item.temp_pred)); // Parse Temperature prediction as a float
-        extractedPredictedUpperBounds.push(parseFloat(item.temp_upper)); // Parse Temperature upper bound as a float
-        extractedPredictedLowerBounds.push(parseFloat(item.temp_lower)); // Parse Temperature lower bound as a float
-      } else if (selectedOption === 'pH') {
-        extractedPredictedData.push(parseFloat(item.ph_pred)); // Parse pH prediction as a float
-        extractedPredictedUpperBounds.push(parseFloat(item.ph_upper)); // Parse pH upper bound as a float
-        extractedPredictedLowerBounds.push(parseFloat(item.ph_lower)); // Parse pH lower bound as a float
-      } else if (selectedOption === 'Turbidity') {
-        extractedPredictedData.push(parseFloat(item.turb_pred)); // Parse Turbidity prediction as a float
-        extractedPredictedUpperBounds.push(parseFloat(item.turb_upper)); // Parse Turbidity upper bound as a float
-        extractedPredictedLowerBounds.push(parseFloat(item.turb_lower)); // Parse Turbidity lower bound as a float
-      } else if (selectedOption === 'Dissolved Oxygen') {
-        extractedPredictedData.push(parseFloat(item.lod_pred)); // Parse Dissolved Oxygen prediction as a float
-        extractedPredictedUpperBounds.push(parseFloat(item.lod_upper)); // Parse Dissolved Oxygen upper bound as a float
-        extractedPredictedLowerBounds.push(parseFloat(item.lod_lower)); // Parse Dissolved Oxygen lower bound as a float
-      }
-    }
+        // Fetch predicted data from the new API using axios
+        axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter/preds')
+          .then(predictedResponse => {
+            const fetchedPredictedData = predictedResponse.data;
 
-    setPredictedData(extractedPredictedData);
-    setPredictedUpperBounds(extractedPredictedUpperBounds);
-    setPredictedLowerBounds(extractedPredictedLowerBounds);
+            // Extract and set predicted data and bounds
+            const extractedPredictedData = [];
+            const extractedPredictedUpperBounds = [];
+            const extractedPredictedLowerBounds = [];
 
-    // Calculate interpretation based on the data
-    // You can customize the interpretation logic based on your requirements
-    const latestMeasuredValue = extractedData[extractedData.length - 1];
-    const latestPredictedValue = extractedPredictedData[extractedPredictedData.length - 1];
+            for (const item of fetchedPredictedData) {
+              if (selectedOption === 'Temperature') {
+                extractedPredictedData.push(parseFloat(item.temp_pred));
+                extractedPredictedUpperBounds.push(parseFloat(item.temp_upper));
+                extractedPredictedLowerBounds.push(parseFloat(item.temp_lower));
+              } else if (selectedOption === 'pH') {
+                extractedPredictedData.push(parseFloat(item.ph_pred));
+                extractedPredictedUpperBounds.push(parseFloat(item.ph_upper));
+                extractedPredictedLowerBounds.push(parseFloat(item.ph_lower));
+              } else if (selectedOption === 'Turbidity') {
+                extractedPredictedData.push(parseFloat(item.turb_pred));
+                extractedPredictedUpperBounds.push(parseFloat(item.turb_upper));
+                extractedPredictedLowerBounds.push(parseFloat(item.turb_lower));
+              } else if (selectedOption === 'Dissolved Oxygen') {
+                extractedPredictedData.push(parseFloat(item.lod_pred));
+                extractedPredictedUpperBounds.push(parseFloat(item.lod_upper));
+                extractedPredictedLowerBounds.push(parseFloat(item.lod_lower));
+              }
+            }
 
-    if (latestMeasuredValue < latestPredictedValue) {
-      setInterpretation("The measured value is below the predicted value.(Placeholder only)");
-    } else if (latestMeasuredValue > latestPredictedValue) {
-      setInterpretation("The measured value is above the predicted value.(Placeholder only)");
-    } else {
-      setInterpretation("The measured value matches the predicted value.(Placeholder only)");
-    }
+            setPredictedData(extractedPredictedData);
+            setPredictedUpperBounds(extractedPredictedUpperBounds);
+            setPredictedLowerBounds(extractedPredictedLowerBounds);
+
+            // Calculate interpretation based on the data
+            const latestMeasuredValue = extractedData[extractedData.length - 1];
+            const latestPredictedValue = extractedPredictedData[extractedPredictedData.length - 1];
+
+            if (latestMeasuredValue < latestPredictedValue) {
+              setInterpretation("The measured value is below the predicted value. (Placeholder only)");
+            } else if (latestMeasuredValue > latestPredictedValue) {
+              setInterpretation("The measured value is above the predicted value. (Placeholder only)");
+            } else {
+              setInterpretation("The measured value matches the predicted value. (Placeholder only)");
+            }
+          })
+          .catch(predictedError => {
+            console.error('Error fetching predicted data:', predictedError);
+          });
+
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
   }, [selectedOption]);
 
   const data = [
     {
-      x: dataY, // Dates (y)
-      y: dataX, // Parameter data (x)
+      x: dataY,
+      y: dataX,
       type: 'scatter',
       mode: 'lines',
       name: 'Measured Data',
     },
     {
-      x: dataY, // Dates (y)
-      y: predictedData, // Predicted data (x)
+      x: dataY,
+      y: predictedData,
       type: 'scatter',
       mode: 'lines',
       name: 'Predicted Data',
     },
     {
-      x: dataY, // Dates (y)
-      y: predictedUpperBounds, // Predicted upper bounds (x)
+      x: dataY,
+      y: predictedUpperBounds,
       mode: 'lines',
       fill: 'tonexty',
       name: 'Upper Bound',
     },
     {
-      x: dataY, // Dates (y)
-      y: predictedLowerBounds, // Predicted lower bounds (x)
+      x: dataY,
+      y: predictedLowerBounds,
       mode: 'lines',
       fill: 'tonexty',
       name: 'Lower Bound',
@@ -119,9 +136,9 @@ const DataAnalysis = () => {
   ];
 
   const layout = {
-    title: selectedOption, // Display selected option in the chart title
-    xaxis:{
-      range: [new Date() - 7 * 24 * 60 * 60 * 1000, '2023-09-05'], //new Date()
+    title: selectedOption,
+    xaxis: {
+      range: [new Date() - 7 * 24 * 60 * 60 * 1000, '2023-09-05'],
     }
   };
 
@@ -156,19 +173,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dropdown: {
-    width: '95%', // Adjust the width as needed
+    width: '95%',
     marginTop: 5,
     marginBottom: 5,
-    borderWidth: 2, // Add a border
-    borderColor: '#000000', // Border color
-    borderRadius: 25, // Border radius
+    borderWidth: 2,
+    borderColor: '#000000',
+    borderRadius: 25,
     paddingHorizontal: 8,
   },
   chartContainer: {
     width: "98%",
-    borderWidth: 2, // Add a border
-    borderColor: '#000000', // Border color
-    borderRadius: 5, // Border radius
+    borderWidth: 2,
+    borderColor: '#000000',
+    borderRadius: 5,
   },
   interpretationContainer: {
     width: "100%",
@@ -181,14 +198,6 @@ const styles = StyleSheet.create({
   },
   interpretationText: {
     fontSize: 14,
-  },
-  logoutContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  logoutText: {
-    fontSize: 18,
-    marginLeft: 10,
   },
 });
 

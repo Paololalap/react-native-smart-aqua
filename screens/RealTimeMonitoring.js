@@ -1,128 +1,95 @@
-import React from 'react';
-import { SafeAreaView, StyleSheet, View, ScrollView, Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import axios from 'axios';
 import RNSpeedometer from 'react-native-speedometer';
 
 const RealTimeMonitoring = () => {
-  const data = [
-    {
-      title: 'Temperature',
-      value: 75,//temp value
-      labels: [
-        {
-          name: 'Low',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
-          position: 'left',
-          
-        },
-        {
-          name: 'Normal',
-          labelColor: '#56EB04',
-          activeBarColor: '#56EB04',
-          position: 'center',
-        },
-        {
-          name: 'High',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
-          position: 'right',
-        },
-      ],
-    },
-    {
-      title: 'pH',
-      value: 6.5,//pH value
-      labels: [
-        {
-          name: 'Low',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
-          position: 'left',
-        },
-        {
-          name: 'Normal',
-          labelColor: '#56EB04',
-          activeBarColor: '#56EB04',
-          position: 'center',
-        },
-        {
-          name: 'High',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
-          position: 'right',
-        },
-      ],
-    },
-    {
-      title: 'Dissolved Oxygen',
-      value: 80,
-      labels: [
-        {
-          name: 'Low',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
-          position: 'left',
-        },
-        {
-          name: 'Normal',
-          labelColor: '#56EB04',
-          activeBarColor: '#56EB04',
-          position: 'center',
-        },
-        {
-          name: 'High',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
-          position: 'right',
-        },
-      ],
-    },
-    {
-      title: 'Turbidity',
-      value: 45,
-      labels: [
-        {
-          name: 'Low',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
-          position: 'left',
-        },
-        {
-          name: 'Normal',
-          labelColor: '#56EB04',
-          activeBarColor: '#56EB04',
-          position: 'center',
-        },
-        {
-          name: 'High',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
-          position: 'right',
-        },
-      ],
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter/');
+        setData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const getSpeedometerData = () => {
+    return [
+      {
+        title: 'Temperature',
+        value: parseFloat(firstEntry?.Temperature) || 0,
+        labels: getLabels(),
+      },
+      {
+        title: 'pH',
+        value: parseFloat(firstEntry?.PH) || 0,
+        labels: getLabels(),
+      },
+      {
+        title: 'Dissolved Oxygen',
+        value: parseFloat(firstEntry?.LDO) || 0,
+        labels: getLabels(),
+      },
+      {
+        title: 'Turbidity',
+        value: parseFloat(firstEntry?.TURBIDITY) || 0,
+        labels: getLabels(),
+      },
+    ];
+  };
+
+  const getLabels = () => {
+    return [
+      {
+        name: 'Low',
+        labelColor: '#2986CC',
+        activeBarColor: '#2986CC',
+        position: 'left',
+      },
+      {
+        name: 'Normal',
+        labelColor: '#56EB04',
+        activeBarColor: '#56EB04',
+        position: 'center',
+      },
+      {
+        name: 'High',
+        labelColor: '#FE2D2D',
+        activeBarColor: '#FE2D2D',
+        position: 'right',
+      },
+    ];
+  };
+
+  // Assuming you want to display the first entry in the data array
+  const firstEntry = data.length > 0 ? data[0] : null;
 
   return (
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.speedometerContainer}>
-            {data.map((item, index) => (
-              <View style={styles.speedometer} key={index}>
-                <Text style={styles.title}>{item.title}</Text>
-                <RNSpeedometer
-                  value={item.value}
-                  size={200}
-                  minValue={0}
-                  maxValue={100}
-                  allowedDecimals={0}
-                  labels={item.labels}
-                />
-              </View>
-            ))}
-          </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <View style={styles.speedometerContainer}>
+          {getSpeedometerData().map((item, index) => (
+            <View style={styles.speedometer} key={index}>
+              <Text style={styles.title}>{item.title}</Text>
+              <RNSpeedometer
+                value={item.value}
+                size={200}
+                minValue={0}
+                maxValue={100}
+                allowedDecimals={1}
+                labels={item.labels}
+              />
+            </View>
+          ))}
         </View>
-      </ScrollView>
+      </View>
+    </ScrollView>
   );
 };
 
