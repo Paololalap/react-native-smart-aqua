@@ -7,7 +7,6 @@ import LoginScreen from './screens/LoginScreen';
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [pressedBackButton, setPressedBackButton] = useState(false);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -24,10 +23,6 @@ export default function App() {
   const handleGuestUser = () => {
     setLoggedIn(true);
   }
-
-  const handlePressedBackButton = () => {
-    setPressedBackButton(true);
-  };
 
   return (
     <View style={{ flex: 1 }}>
