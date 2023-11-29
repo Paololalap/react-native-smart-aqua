@@ -1,7 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
-import RegisterScreen from '../screens/RegisterScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RealTimeMonitoring from '../screens/RealTimeMonitoring';
 import About from '../screens/AboutScreen';
@@ -17,13 +16,6 @@ const HomeStack = () => {
         component={HomeScreen}
         options={{
           title: 'Home Screen', 
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="RegisterScreen"
-        component={RegisterScreen}
-        options={{
           headerShown: false,
         }}
       />

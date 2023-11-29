@@ -3,12 +3,10 @@ import { View } from 'react-native';
 import SplashScreen from './screens/SplashScreen';
 import Navigator from './routes/MainDrawer';
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
 
 export default function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [showRegisterScreen, setShowRegisterScreen] = useState(false);
   const [pressedBackButton, setPressedBackButton] = useState(false);
 
   useEffect(() => {
@@ -27,33 +25,23 @@ export default function App() {
     setLoggedIn(true);
   }
 
-  const handleRegisterSuccess = () => {
-    setShowRegisterScreen(false);
-  };
-
   const handlePressedBackButton = () => {
     setPressedBackButton(true);
-    setShowRegisterScreen(false);
   };
 
   return (
     <View style={{ flex: 1 }}>
-      {showSplash ? (
-        <SplashScreen />
-      ) : loggedIn ? (
-        <Navigator />
-      ) : showRegisterScreen ? (
-        <RegisterScreen 
-          onRegisterSuccess={handleRegisterSuccess} 
-          onPressedBackButton={handlePressedBackButton} 
-        />
-      ) : (
-        <LoginScreen
-          onLoginSuccess={handleLoginSuccess}
-          onGuestUser={handleGuestUser}
-          onRegisterSuccess={() => setShowRegisterScreen(true)}
-        />
-      )}
-    </View>
+  {showSplash ? (
+    <SplashScreen />
+  ) : loggedIn ? (
+    <Navigator />
+  ) : (
+    <LoginScreen
+      onLoginSuccess={handleLoginSuccess}
+      onGuestUser={handleGuestUser}
+    />
+  )}
+</View>
+
   );
 }
