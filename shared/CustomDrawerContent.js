@@ -126,6 +126,15 @@ const CustomDrawerContent = () => {
         >
           <Text style={styles.drawerItemText}>Data Analysis</Text>
         </Pressable>
+        <Pressable
+          onPress={() => navigateToScreen("About")}
+          style={({ pressed }) => [
+            styles.drawerItem,
+            pressed ? { backgroundColor: "#4E96A9" } : null,
+          ]}
+        >
+          <Text style={styles.drawerItemText}>About</Text>
+        </Pressable>
       </View>
 
       <View style={styles.bottomContainer}>
