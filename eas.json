@@ -22,9 +22,6 @@
       "developmentClient": true
     },
     "production": {
-      "android": {
-        "sdkVersion": "28.0.0"
-      }
     }
   },
   "submit": {
