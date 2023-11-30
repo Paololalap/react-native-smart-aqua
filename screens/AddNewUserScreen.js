@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, Image, Alert, NativeModules, ActivityIndicator, Keyboard, Pressable } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, Alert, ActivityIndicator, Keyboard, Pressable } from 'react-native';
 import { firebase } from '../shared/firebase';
 
 export default function RegisterScreen() {
@@ -72,9 +72,11 @@ export default function RegisterScreen() {
           'You have successfully registered.',
           [
             {
-              text: 'Return to Login Screen',
+              text: 'Okay',
               onPress: () => { 
-                NativeModules.DevSettings.reload();
+                setName('');
+                setEmail('');
+                setPassword('');
               },
               style: 'destructive',
             },
