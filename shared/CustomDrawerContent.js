@@ -68,10 +68,8 @@ const CustomDrawerContent = () => {
               .signOut()
               .then(() => {
                 if (__DEV__) {
-                  // Execute NativeModules in development mode
                   NativeModules.DevSettings.reload();
                 } else {
-                  // Execute Restart in production mode
                   Restart.Restart();
                 }
               })
