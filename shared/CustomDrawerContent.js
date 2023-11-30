@@ -1,6 +1,6 @@
 // CustomDrawerContent.js
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet, Pressable, Alert } from "react-native";
+import { NativeModules, View, Text, Image, StyleSheet, Pressable, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/AntDesign";
 import Restart from "react-native-restart";
@@ -67,7 +67,13 @@ const CustomDrawerContent = () => {
               .auth()
               .signOut()
               .then(() => {
-                Restart.Restart();
+                if (__DEV__) {
+                  // Execute NativeModules in development mode
+                  NativeModules.DevSettings.reload();
+                } else {
+                  // Execute Restart in production mode
+                  Restart.Restart();
+                }
               })
               .catch((error) => {
                 console.error("Error signing out:", error);
@@ -126,6 +132,17 @@ const CustomDrawerContent = () => {
         >
           <Text style={styles.drawerItemText}>Data Analysis</Text>
         </Pressable>
+        {showAccountSettings && (
+          <Pressable
+            onPress={() => navigateToScreen('AddNewUserScreen')}
+            style={({ pressed }) => [
+              styles.drawerItem,
+              pressed ? { backgroundColor: '#4E96A9' } : null,
+            ]}
+          >
+            <Text style={styles.drawerItemText}>Add New User</Text>
+          </Pressable>
+        )}
         <Pressable
           onPress={() => navigateToScreen("About")}
           style={({ pressed }) => [

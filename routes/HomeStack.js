@@ -5,6 +5,7 @@ import LoginScreen from '../screens/LoginScreen';
 import RealTimeMonitoring from '../screens/RealTimeMonitoring';
 import About from '../screens/AboutScreen';
 import DataAnalysis from '../screens/DataAnalysis';
+import AddNewUserScreen from '../screens/AddNewUserScreen';
 
 const Stack = createStackNavigator();
 
@@ -31,6 +32,14 @@ const HomeStack = () => {
         component={RealTimeMonitoring}
         options={{
           title: 'Real-time Monitoring', 
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="AddNewUserScreen"
+        component={AddNewUserScreen}
+        options={{
+          title: 'Add New User', 
           headerShown: false,
         }}
       />
