@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, View, ScrollView, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import RNSpeedometer from 'react-native-speedometer';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ const RealTimeMonitoring = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter/');
+        const response = await axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/Arduino/joyparam');
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -23,28 +23,28 @@ const RealTimeMonitoring = () => {
     return [
       {
         title: 'Temperature',
-        value: parseFloat(firstEntry?.Temperature) || 0,
+        value: parseFloat(firstEntry?.temp) || 0,
         min: 0,
         max: 100,
         labels: getLabels(),
       },
       {
         title: 'pH',
-        value: parseFloat(firstEntry?.PH) || 0,
+        value: parseFloat(firstEntry?.ph) || 0,
         min: 0,
         max: 14,
         labels: getLabels(),
       },
       {
         title: 'Dissolved Oxygen',
-        value: parseFloat(firstEntry?.LDO) || 0,
+        value: parseFloat(firstEntry?.do) || 0,
         min: 0,
         max: 10,
         labels: getLabels(),
       },
       {
         title: 'Turbidity',
-        value: parseFloat(firstEntry?.TURBIDITY) || 0,
+        value: parseFloat(firstEntry?.turbidity) || 0,
         min: 0,
         max: 100,
         labels: getLabels(),
@@ -56,7 +56,7 @@ const RealTimeMonitoring = () => {
     if (title === 'Dissolved Oxygen') {
       return [
         {
-          name: 'Good',
+          name: 'Low',
           labelColor: '#2986CC',
           activeBarColor: '#FE2D2D',
           position: 'left',
@@ -68,7 +68,7 @@ const RealTimeMonitoring = () => {
           position: 'right',
         },
         {
-          name: 'High',
+          name: 'Good',
           labelColor: '#26631a',
           activeBarColor: '#26631a',
           position: 'right',
