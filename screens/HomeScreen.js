@@ -29,27 +29,27 @@ export default function App() {
   const firstEntry = parameterData?.length > 0 ? parameterData[0] : null;
 
   function getStatusForTemperature(temp) {
-    if (temp >= 0 && temp <= 26) return 'Low';
+    if (temp < 27) return 'Low';
     if (temp >= 27 && temp <= 32) return 'Normal';
     if (temp > 33) return 'High';
   }
 
   function getStatusForPH(ph) {
-    if (ph >= 0 && ph <= 5.5) return 'Acidic';
+    if (ph < 5.6) return 'Acidic';
     if (ph >= 5.6 && ph <= 6.4) return 'Normal';
-    if (ph > 6.5 && ph <= 14) return 'Base';
+    if (ph > 6.4) return 'Base';
   }
 
   function getStatusForDO(doValue) {
-    if (doValue >= 0 && doValue <= 3) return 'Bad';
-    if (doValue > 3 && doValue <= 6) return 'Normal';
-    if (doValue > 6 && doValue <= 9) return 'Very Good';
-    if (doValue > 9) return 'Very Good';
+    if (doValue < 3) return 'Bad';
+    if (doValue >= 3 && doValue < 6) return 'Normal';
+    if (doValue >= 6 && doValue < 9) return 'Very Good';
+    if (doValue >= 9) return 'Very Good';
   }
 
   function getStatusForTurbidity(turbidity) {
-    if (turbidity < 0) return 'Very Low';
-    if (turbidity >= 0 && turbidity <= 30) return 'Low';
+    if (turbidity < 1) return 'Very Low';
+    if (turbidity >= 1 && turbidity <= 30) return 'Low';
     if (turbidity > 30 && turbidity <= 60) return 'Normal';
     if (turbidity > 60 && turbidity <= 90) return 'High';
     if (turbidity > 90) return 'Very High';
