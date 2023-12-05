@@ -74,28 +74,33 @@ const RealTimeMonitoring = () => {
     } 
     if (title === 'pH') {
       return [
-        {
-          name: 'Acidic',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
-        },
-        {
-          name: 'Normal',
-          labelColor: '#56EB04',
-          activeBarColor: '#56EB04',
-        },
-        {
-          name: 'Base',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
-        },
+          { name: 'Acidic', labelColor: '#FF0000', activeBarColor: '#FF0000', key: 'Acidic1'},
+          { name: 'Acidic', labelColor: '#FF3300', activeBarColor: '#FF3300', key: 'Acidic2'},
+          { name: 'Acidic', labelColor: '#FF6600', activeBarColor: '#FF6600', key: 'Acidic3'},
+          { name: 'Acidic', labelColor: '#FF9900', activeBarColor: '#FF9900', key: 'Acidic4'},
+          { name: 'Acidic', labelColor: '#FFCC00', activeBarColor: '#FFCC00', key: 'Acidic5'},
+          { name: 'Acidic', labelColor: '#FFFF00', activeBarColor: '#FFFF00', key: 'Acidic6'},
+          { name: 'Normal', labelColor: '#CCFF00', activeBarColor: '#CCFF00', key: 'Normal1'},
+          { name: 'Normal', labelColor: '#99FF00', activeBarColor: '#99FF00', key: 'Normal2'},
+          { name: 'Base', labelColor: '#66FF00', activeBarColor: '#66FF00', key: 'Base1'},
+          { name: 'Base', labelColor: '#33FF00', activeBarColor: '#33FF00', key: 'Base2'},
+          { name: 'Base', labelColor: '#00FF00', activeBarColor: '#00FF00', key: 'Base3'},
+          { name: 'Base', labelColor: '#00FF33', activeBarColor: '#00FF33', key: 'Base4'},
+          { name: 'Base', labelColor: '#00FF66', activeBarColor: '#00FF66', key: 'Base5'},
+          { name: 'Base', labelColor: '#0066FF', activeBarColor: '#0066FF', key: 'Base6'},
+          { name: 'Base', labelColor: '#0000FF', activeBarColor: '#0000FF', key: 'Base7'},
       ];
     } if (title === 'Turbidity') {
       return [
         {
+          name: 'Very Low',
+          labelColor: '#2986CC',
+          activeBarColor: '#2986CC',
+        },
+        {
           name: 'Low',
-          labelColor: '#FE2D2D',
-          activeBarColor: '#FE2D2D',
+          labelColor: '#6da6d1',
+          activeBarColor: '#6da6d1',
         },
         {
           name: 'Normal',
@@ -104,9 +109,14 @@ const RealTimeMonitoring = () => {
         },
         {
           name: 'High',
-          labelColor: '#2986CC',
-          activeBarColor: '#2986CC',
+          labelColor: '#d95252',
+          activeBarColor: '#d95252',
         },
+        {
+          name: 'Very High',
+          labelColor: '#FE2D2D',
+          activeBarColor: '#FE2D2D',
+        }
       ];
     } if (title === 'Temperature') {
       return [
@@ -136,26 +146,25 @@ const RealTimeMonitoring = () => {
       <View style={styles.container}>
         <View style={styles.speedometerContainer}>
         {getSpeedometerData().map((item, index) => (
-            <View style={styles.speedometer} key={index}>
-              <Text style={styles.title}>{item.title}</Text>
-              <RNSpeedometer
-                value={item.value}
-                size={200}
-                minValue={item.min}
-                maxValue={item.max}
-                allowedDecimals={2}
-                labels={getLabels(item.title)}
-              />
-              <Text style={styles.valueText}>{`${getMeasurementUnit(item.title)}`}</Text>
-            </View>
-          ))}
+          <View style={styles.speedometer} key={index}>
+            <Text style={styles.title}>{item.title}</Text>
+            <RNSpeedometer
+              value={item.title === 'Turbidity' ? Math.abs(item.value) : item.value}
+              size={200}
+              minValue={item.min}
+              maxValue={item.max}
+              allowedDecimals={2}
+              labels={getLabels(item.title)}
+            />
+            <Text style={styles.valueText}>{`    ${item.title === 'Turbidity' ? (item.value >= 100 ? '+' : '-') : ''}  ${getMeasurementUnit(item.title)}`}</Text>
+          </View>
+        ))}
         </View>
       </View>
     </ScrollView>
   );
 };
 
-// Function to get the measurement unit based on the parameter title
 const getMeasurementUnit = (title) => {
   switch (title) {
     case 'Temperature':
@@ -163,9 +172,9 @@ const getMeasurementUnit = (title) => {
     case 'pH':
       return 'pH';
     case 'Dissolved Oxygen':
-      return '     mg/L';
+      return 'mg/L';
     case 'Turbidity':
-      return '     NTU';
+      return 'NTU';
     default:
       return '';
   }
