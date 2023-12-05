@@ -23,28 +23,28 @@ const RealTimeMonitoring = () => {
     return [
       {
         title: 'Temperature',
-        value: parseFloat(firstEntry?.temp) || 0,
+        value: parseFloat(firstEntry?.temp),
         min: 0,
-        max: 100,
+        max: 90,
         labels: getLabels(),
       },
       {
         title: 'pH',
-        value: parseFloat(firstEntry?.ph) || 0,
+        value: parseFloat(firstEntry?.ph),
         min: 0,
         max: 14,
         labels: getLabels(),
       },
       {
         title: 'Dissolved Oxygen',
-        value: parseFloat(firstEntry?.do) || 0,
+        value: parseFloat(firstEntry?.do),
         min: 0,
         max: 10,
         labels: getLabels(),
       },
       {
         title: 'Turbidity',
-        value: parseFloat(firstEntry?.turbidity) || 0,
+        value: parseFloat(firstEntry?.turbidity),
         min: 0,
         max: 100,
         labels: getLabels(),
@@ -57,21 +57,18 @@ const RealTimeMonitoring = () => {
       return [
         {
           name: 'Low',
-          labelColor: '#2986CC',
+          labelColor: '#FE2D2D',
           activeBarColor: '#FE2D2D',
-          position: 'left',
         },
         {
           name: 'Normal',
           labelColor: '#56EB04',
           activeBarColor: '#56EB04',
-          position: 'right',
         },
         {
           name: 'Good',
           labelColor: '#26631a',
           activeBarColor: '#26631a',
-          position: 'right',
         },
       ];
     } 
@@ -79,49 +76,59 @@ const RealTimeMonitoring = () => {
       return [
         {
           name: 'Acidic',
-          labelColor: '#2986CC',
+          labelColor: '#FE2D2D',
           activeBarColor: '#FE2D2D',
-          position: 'left',
         },
         {
           name: 'Normal',
           labelColor: '#56EB04',
           activeBarColor: '#56EB04',
-          position: 'right',
         },
         {
           name: 'Base',
-          labelColor: '#FE2D2D',
+          labelColor: '#2986CC',
           activeBarColor: '#2986CC',
-          position: 'right',
         },
       ];
-    } else {
-      // For other parameters, use the original labels
+    } if (title === 'Turbidity') {
+      return [
+        {
+          name: 'Low',
+          labelColor: '#FE2D2D',
+          activeBarColor: '#FE2D2D',
+        },
+        {
+          name: 'Normal',
+          labelColor: '#56EB04',
+          activeBarColor: '#56EB04',
+        },
+        {
+          name: 'High',
+          labelColor: '#2986CC',
+          activeBarColor: '#2986CC',
+        },
+      ];
+    } if (title === 'Temperature') {
       return [
         {
           name: 'Good',
           labelColor: '#2986CC',
           activeBarColor: '#2986CC',
-          position: 'left',
         },
         {
           name: 'Normal',
           labelColor: '#56EB04',
           activeBarColor: '#56EB04',
-          position: 'center',
         },
         {
           name: 'Bad',
           labelColor: '#FE2D2D',
           activeBarColor: '#FE2D2D',
-          position: 'right',
         },
       ];
     }
   };
 
-  // Assuming you want to display the first entry in the data array
   const firstEntry = data.length > 0 ? data[0] : null;
 
   return (
@@ -136,10 +143,9 @@ const RealTimeMonitoring = () => {
                 size={200}
                 minValue={item.min}
                 maxValue={item.max}
-                allowedDecimals={1}
+                allowedDecimals={2}
                 labels={getLabels(item.title)}
               />
-              {/* Displaying measurement units below the values */}
               <Text style={styles.valueText}>{`${getMeasurementUnit(item.title)}`}</Text>
             </View>
           ))}

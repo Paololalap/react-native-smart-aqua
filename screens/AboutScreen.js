@@ -39,7 +39,7 @@ export default function About() {
         <Text style={[styles.description, { width: 300, marginBottom: 15 }]}>
           Fish: The fish, swimming below the technology icons, could represent
           aquatic life oran emphasis on marine environments. It might also
-          symbolizeadaptability and the concept of being 'always moving'. The
+          symbolize adaptability and the concept of being 'always moving'. The
           circular arrangement suggests completeness or a holistic
           approach,integrating these elements into a unified service or
           philosophy. The logo might belong to a company that specializes in

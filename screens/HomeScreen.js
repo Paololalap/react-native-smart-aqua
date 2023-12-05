@@ -112,12 +112,12 @@ export default function App() {
                 pH: {' '}{getStatusForPH(parseFloat(firstEntry?.ph))}
               </Text>
             )}
-            {getStatusForDO(parseFloat(firstEntry?.do)) !== 'Normal' || getStatusForDO(parseFloat(firstEntry?.do)) !== 'Good' && (
+            {getStatusForDO(parseFloat(firstEntry?.do)) !== 'Normal' && getStatusForDO(parseFloat(firstEntry?.do)) !== 'Good' && (
               <Text style={styles.notificationText}>
                 Dissolved Oxygen: {' '}{getStatusForDO(parseFloat(firstEntry?.do))}
               </Text>
             )}
-            {getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Low' || getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Normal' || getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'High' && (
+            {getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Low' && getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Normal' && getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'High' && (
               <Text style={styles.notificationText}>
                 Turbidity: {' '}{getStatusForTurbidity(parseFloat(firstEntry?.turbidity))}
               </Text>
