@@ -82,13 +82,13 @@ const RealTimeMonitoring = () => {
           { name: 'Acidic', labelColor: '#FFFF00', activeBarColor: '#FFFF00', key: 'Acidic6'},
           { name: 'Normal', labelColor: '#CCFF00', activeBarColor: '#CCFF00', key: 'Normal1'},
           { name: 'Normal', labelColor: '#99FF00', activeBarColor: '#99FF00', key: 'Normal2'},
-          { name: 'Base', labelColor: '#66FF00', activeBarColor: '#66FF00', key: 'Base1'},
-          { name: 'Base', labelColor: '#33FF00', activeBarColor: '#33FF00', key: 'Base2'},
-          { name: 'Base', labelColor: '#00FF00', activeBarColor: '#00FF00', key: 'Base3'},
-          { name: 'Base', labelColor: '#00FF33', activeBarColor: '#00FF33', key: 'Base4'},
-          { name: 'Base', labelColor: '#00FF66', activeBarColor: '#00FF66', key: 'Base5'},
-          { name: 'Base', labelColor: '#0066FF', activeBarColor: '#0066FF', key: 'Base6'},
-          { name: 'Base', labelColor: '#0000FF', activeBarColor: '#0000FF', key: 'Base7'},
+          { name: 'Normal', labelColor: '#66FF00', activeBarColor: '#66FF00', key: 'Normal3'},
+          { name: 'Base', labelColor: '#33FF00', activeBarColor: '#33FF00', key: 'Base1'},
+          { name: 'Base', labelColor: '#00FF00', activeBarColor: '#00FF00', key: 'Base2'},
+          { name: 'Base', labelColor: '#00FF33', activeBarColor: '#00FF33', key: 'Base3'},
+          { name: 'Base', labelColor: '#00FF66', activeBarColor: '#00FF66', key: 'Base4'},
+          { name: 'Base', labelColor: '#0066FF', activeBarColor: '#0066FF', key: 'Base5'},
+          { name: 'Base', labelColor: '#0000FF', activeBarColor: '#0000FF', key: 'Base6'},
       ];
     } if (title === 'Turbidity') {
       return [
@@ -149,14 +149,16 @@ const RealTimeMonitoring = () => {
           <View style={styles.speedometer} key={index}>
             <Text style={styles.title}>{item.title}</Text>
             <RNSpeedometer
-              value={item.title === 'Turbidity' ? Math.abs(item.value) : item.value}
+              value={item.value}
               size={200}
               minValue={item.min}
               maxValue={item.max}
               allowedDecimals={2}
               labels={getLabels(item.title)}
             />
-            <Text style={styles.valueText}>{`    ${item.title === 'Turbidity' ? (item.value >= 100 ? '+' : '-') : ''}  ${getMeasurementUnit(item.title)}`}</Text>
+            <Text style={styles.valueText}>
+              {`     ${item.title === 'Turbidity' ? (item.value < 0 ? '-' : item.value > 100 ? '+' : '') : ''} ${getMeasurementUnit(item.title)}`}
+            </Text>
           </View>
         ))}
         </View>
