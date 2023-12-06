@@ -24,8 +24,8 @@ const RealTimeMonitoring = () => {
       {
         title: 'Temperature',
         value: parseFloat(firstEntry?.temp),
-        min: 0,
-        max: 90,
+        min: 23,
+        max: 36,
         labels: getLabels(),
       },
       {
@@ -121,7 +121,7 @@ const RealTimeMonitoring = () => {
     } if (title === 'Temperature') {
       return [
         {
-          name: 'Good',
+          name: 'Low',
           labelColor: '#2986CC',
           activeBarColor: '#2986CC',
         },
@@ -131,7 +131,7 @@ const RealTimeMonitoring = () => {
           activeBarColor: '#56EB04',
         },
         {
-          name: 'Bad',
+          name: 'High',
           labelColor: '#FE2D2D',
           activeBarColor: '#FE2D2D',
         },
