@@ -35,23 +35,22 @@ export default function App() {
   }
 
   function getStatusForPH(ph) {
-    if (ph < 5.6) return 'Acidic';
-    if (ph >= 5.6 && ph <= 6.4) return 'Normal';
-    if (ph > 6.4) return 'Base';
+    if (ph < 7) return 'Acidic';
+    if (ph >= 7 && ph <= 9) return 'Normal';
+    if (ph > 9) return 'Base';
   }
 
   function getStatusForDO(doValue) {
     if (doValue < 3) return 'Bad';
-    if (doValue >= 3 && doValue < 6) return 'Normal';
-    if (doValue >= 6 && doValue < 9) return 'Very Good';
-    if (doValue >= 9) return 'Very Good';
+    if (doValue >= 3 && doValue <= 6) return 'Normal';
+    if (doValue > 6) return 'Good';
   }
 
   function getStatusForTurbidity(turbidity) {
     if (turbidity < 1) return 'Very Low';
     if (turbidity >= 1 && turbidity <= 30) return 'Low';
-    if (turbidity > 30 && turbidity <= 60) return 'Normal';
-    if (turbidity > 60 && turbidity <= 90) return 'High';
+    if (turbidity >= 31 && turbidity <= 60) return 'Normal';
+    if (turbidity >= 61 && turbidity <= 90) return 'High';
     if (turbidity > 90) return 'Very High';
   }
 

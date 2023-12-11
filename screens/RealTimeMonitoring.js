@@ -148,14 +148,16 @@ const RealTimeMonitoring = () => {
           <View style={styles.speedometer} key={index}>
             <Text style={styles.title}>{item.title}</Text>
             <RNSpeedometer
-              value={item.title === 'Turbidity' ? Math.abs(item.value) : item.value}
+              value={item.value}
               size={200}
               minValue={item.min}
               maxValue={item.max}
               allowedDecimals={2}
               labels={getLabels(item.title)}
             />
-            <Text style={styles.valueText}>{`    ${item.title === 'Turbidity' ? (item.value >= 100 ? '+' : '-') : ''}  ${getMeasurementUnit(item.title)}`}</Text>
+            <Text style={styles.valueText}>
+              {`     ${item.title === 'Turbidity' ? (item.value < 0 ? '-' : item.value > 100 ? '+' : '') : ''} ${getMeasurementUnit(item.title)}`}
+            </Text>
           </View>
         ))}
         </View>
