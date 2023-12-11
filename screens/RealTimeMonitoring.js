@@ -74,21 +74,20 @@ const RealTimeMonitoring = () => {
     } 
     if (title === 'pH') {
       return [
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF0000', key: 'Acidic1'},
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF3300', key: 'Acidic2'},
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF6600', key: 'Acidic3'},
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF9900', key: 'Acidic4'},
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFCC00', key: 'Acidic5'},
-          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFFF00', key: 'Acidic6'},
-          { name: 'Normal', labelColor: '#000', activeBarColor: '#CCFF00', key: 'Normal1'},
-          { name: 'Normal', labelColor: '#000', activeBarColor: '#99FF00', key: 'Normal2'},
-          { name: 'Normal', labelColor: '#000', activeBarColor: '#66FF00', key: 'Normal3'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#33FF00', key: 'Base1'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF00', key: 'Base2'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF33', key: 'Base3'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF66', key: 'Base4'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#0066FF', key: 'Base5'},
-          { name: 'Base', labelColor: '#000', activeBarColor: '#0000FF', key: 'Base6'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF0000', key: 'ph1'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF3300', key: 'ph2'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF6600', key: 'ph3'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF9900', key: 'ph4'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFCC00', key: 'ph5'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFFF00', key: 'ph6'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#CCFF00', key: 'ph7'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#99FF00', key: 'ph8'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#66FF00', key: 'ph9'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#33FF00', key: 'ph10'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF00', key: 'ph11'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF33', key: 'ph12'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF66', key: 'ph13'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#0066FF', key: 'ph14'}
       ];
     } if (title === 'Turbidity') {
       return [
@@ -149,16 +148,14 @@ const RealTimeMonitoring = () => {
           <View style={styles.speedometer} key={index}>
             <Text style={styles.title}>{item.title}</Text>
             <RNSpeedometer
-              value={item.value}
+              value={item.title === 'Turbidity' ? Math.abs(item.value) : item.value}
               size={200}
               minValue={item.min}
               maxValue={item.max}
               allowedDecimals={2}
               labels={getLabels(item.title)}
             />
-            <Text style={styles.valueText}>
-              {`     ${item.title === 'Turbidity' ? (item.value < 0 ? '-' : item.value > 100 ? '+' : '') : ''} ${getMeasurementUnit(item.title)}`}
-            </Text>
+            <Text style={styles.valueText}>{`    ${item.title === 'Turbidity' ? (item.value >= 100 ? '+' : '-') : ''}  ${getMeasurementUnit(item.title)}`}</Text>
           </View>
         ))}
         </View>
