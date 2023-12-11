@@ -57,64 +57,64 @@ const RealTimeMonitoring = () => {
       return [
         {
           name: 'Low',
-          labelColor: '#FE2D2D',
+          labelColor: '#000',
           activeBarColor: '#FE2D2D',
         },
         {
           name: 'Normal',
-          labelColor: '#56EB04',
+          labelColor: '#000',
           activeBarColor: '#56EB04',
         },
         {
           name: 'Good',
-          labelColor: '#26631a',
+          labelColor: '#000',
           activeBarColor: '#26631a',
         },
       ];
     } 
     if (title === 'pH') {
       return [
-          { name: 'Acidic', labelColor: '#FF0000', activeBarColor: '#FF0000', key: 'Acidic1'},
-          { name: 'Acidic', labelColor: '#FF3300', activeBarColor: '#FF3300', key: 'Acidic2'},
-          { name: 'Acidic', labelColor: '#FF6600', activeBarColor: '#FF6600', key: 'Acidic3'},
-          { name: 'Acidic', labelColor: '#FF9900', activeBarColor: '#FF9900', key: 'Acidic4'},
-          { name: 'Acidic', labelColor: '#FFCC00', activeBarColor: '#FFCC00', key: 'Acidic5'},
-          { name: 'Acidic', labelColor: '#FFFF00', activeBarColor: '#FFFF00', key: 'Acidic6'},
-          { name: 'Normal', labelColor: '#CCFF00', activeBarColor: '#CCFF00', key: 'Normal1'},
-          { name: 'Normal', labelColor: '#99FF00', activeBarColor: '#99FF00', key: 'Normal2'},
-          { name: 'Normal', labelColor: '#66FF00', activeBarColor: '#66FF00', key: 'Normal3'},
-          { name: 'Base', labelColor: '#33FF00', activeBarColor: '#33FF00', key: 'Base1'},
-          { name: 'Base', labelColor: '#00FF00', activeBarColor: '#00FF00', key: 'Base2'},
-          { name: 'Base', labelColor: '#00FF33', activeBarColor: '#00FF33', key: 'Base3'},
-          { name: 'Base', labelColor: '#00FF66', activeBarColor: '#00FF66', key: 'Base4'},
-          { name: 'Base', labelColor: '#0066FF', activeBarColor: '#0066FF', key: 'Base5'},
-          { name: 'Base', labelColor: '#0000FF', activeBarColor: '#0000FF', key: 'Base6'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF0000', key: 'Acidic1'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF3300', key: 'Acidic2'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF6600', key: 'Acidic3'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FF9900', key: 'Acidic4'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFCC00', key: 'Acidic5'},
+          { name: 'Acidic', labelColor: '#000', activeBarColor: '#FFFF00', key: 'Acidic6'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#CCFF00', key: 'Normal1'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#99FF00', key: 'Normal2'},
+          { name: 'Normal', labelColor: '#000', activeBarColor: '#66FF00', key: 'Normal3'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#33FF00', key: 'Base1'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF00', key: 'Base2'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF33', key: 'Base3'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#00FF66', key: 'Base4'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#0066FF', key: 'Base5'},
+          { name: 'Base', labelColor: '#000', activeBarColor: '#0000FF', key: 'Base6'},
       ];
     } if (title === 'Turbidity') {
       return [
         {
           name: 'Very Low',
-          labelColor: '#2986CC',
+          labelColor: '#000',
           activeBarColor: '#2986CC',
         },
         {
           name: 'Low',
-          labelColor: '#6da6d1',
+          labelColor: '#000',
           activeBarColor: '#6da6d1',
         },
         {
           name: 'Normal',
-          labelColor: '#56EB04',
+          labelColor: '#000',
           activeBarColor: '#56EB04',
         },
         {
           name: 'High',
-          labelColor: '#d95252',
+          labelColor: '#000',
           activeBarColor: '#d95252',
         },
         {
           name: 'Very High',
-          labelColor: '#FE2D2D',
+          labelColor: '#000',
           activeBarColor: '#FE2D2D',
         }
       ];
@@ -122,17 +122,17 @@ const RealTimeMonitoring = () => {
       return [
         {
           name: 'Low',
-          labelColor: '#2986CC',
+          labelColor: '#000',
           activeBarColor: '#2986CC',
         },
         {
           name: 'Normal',
-          labelColor: '#56EB04',
+          labelColor: '#000',
           activeBarColor: '#56EB04',
         },
         {
           name: 'High',
-          labelColor: '#FE2D2D',
+          labelColor: '#000',
           activeBarColor: '#FE2D2D',
         },
       ];
