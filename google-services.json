@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "466977767127",
+    "firebase_url": "https://smartaquapp-c46e9-default-rtdb.firebaseio.com",
+    "project_id": "smartaquapp-c46e9",
+    "storage_bucket": "smartaquapp-c46e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:466977767127:android:7e27054c080d3e93153a92",
+        "android_client_info": {
+          "package_name": "com.paololalap.smartaqua"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvscW52of54bTTIU0yPnf0Kb7suR9Qb4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

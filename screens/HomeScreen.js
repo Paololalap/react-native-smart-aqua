@@ -1,3 +1,4 @@
+// Homescreen.js
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Pressable, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -96,28 +97,28 @@ export default function App() {
             <Text style={styles.labelText}>Data Analysis</Text>
           </View>
         </Pressable>
-        <View style={[styles.box, styles.notificationContainer]}>
+        <View style={[styles.box, styles.anomaliesContainer]}>
           <View>
-            <Text style={styles.notificationsHeader}>Notifications</Text>
+            <Text style={styles.anomaliesHeader}>Anomalies</Text>
           </View>
           <View style={{ width: '90%', marginBottom: 25 }}>
             {getStatusForTemperature(parseFloat(firstEntry?.temp)) !== 'Normal' && (
-              <Text style={styles.notificationText}>
+              <Text style={styles.anomaliesText}>
                 Temperature: {' '}{getStatusForTemperature(parseFloat(firstEntry?.temp))}
               </Text>
             )}
             {getStatusForPH(parseFloat(firstEntry?.ph)) !== 'Normal' && (
-              <Text style={styles.notificationText}>
+              <Text style={styles.anomaliesText}>
                 pH: {' '}{getStatusForPH(parseFloat(firstEntry?.ph))}
               </Text>
             )}
             {getStatusForDO(parseFloat(firstEntry?.do)) !== 'Normal' && getStatusForDO(parseFloat(firstEntry?.do)) !== 'Good' && (
-              <Text style={styles.notificationText}>
+              <Text style={styles.anomaliesText}>
                 Dissolved Oxygen: {' '}{getStatusForDO(parseFloat(firstEntry?.do))}
               </Text>
             )}
             {getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Low' && getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'Normal' && getStatusForTurbidity(parseFloat(firstEntry?.turbidity)) !== 'High' && (
-              <Text style={styles.notificationText}>
+              <Text style={styles.anomaliesText}>
                 Turbidity: {' '}{getStatusForTurbidity(parseFloat(firstEntry?.turbidity))}
               </Text>
             )}
@@ -173,17 +174,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
-  notificationContainer: {
+  anomaliesContainer: {
     borderColor: '#4E96A9',
     height: 'auto',
     justifyContent: 'flex-start',
   },
-  notificationText: {
+  anomaliesText: {
     fontSize: 16,
     marginVertical: 2,
     fontWeight: 'bold',
   },
-  notificationsHeader: {
+  anomaliesHeader: {
     fontSize: 24,
     fontWeight: 'bold',
     marginVertical: 15,

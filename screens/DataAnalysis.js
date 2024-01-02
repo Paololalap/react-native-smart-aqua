@@ -87,11 +87,11 @@ const DataAnalysis = () => {
             const latestPredictedValue = extractedPredictedData[extractedPredictedData.length - 1];
 
             if (latestMeasuredValue < latestPredictedValue) {
-              setInterpretation("The measured value is below the predicted value. (Placeholder only)");
+              setInterpretation("The measured value is below the predicted value.");
             } else if (latestMeasuredValue > latestPredictedValue) {
-              setInterpretation("The measured value is above the predicted value. (Placeholder only)");
+              setInterpretation("The measured value is above the predicted value.");
             } else {
-              setInterpretation("The measured value matches the predicted value. (Placeholder only)");
+              setInterpretation("The measured value matches the predicted value.");
             }
           })
           .catch(predictedError => {
