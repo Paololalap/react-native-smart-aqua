@@ -1,4 +1,5 @@
 <h1 align="center">
+  <img src="assets/logo.png" alt="Logo" width="80" height="80">
   Capstone Project: SmartAqua
 </h1>
 
