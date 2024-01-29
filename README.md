@@ -40,23 +40,23 @@ $ npm start
 ## User Interface
 <h3 align="center">Login Screen Interface</h3>
 <p align="center">
-  <img src="output/Images/LoginScreen.jpg" alt="Login Screen Interface" width="70%" height="auto">
+  <img src="output/Images/LoginScreen.jpg" alt="Login Screen Interface" width="15%" height="auto">
 </p>
 
 <h3 align="center">Home Page and Menu Drawer Interface</h3>
 <p align="center">
-  <img src="output/Images/HomeScreen.jpg" alt="Home Page Interface" width="35%" height="auto">
-  <img src="output/Images/DrawerScreen.jpg" alt="Drawer Interface" width="35%" height="auto">
+  <img src="output/Images/HomeScreen.jpg" alt="Home Page Interface" width="15%" height="auto">
+  <img src="output/Images/DrawerScreen.jpg" alt="Drawer Interface" width="15%" height="auto">
 </p>
 
 <h3 align="center">Real-time Monitoring Interface</h3>
 <p align="center">
-  <img src="output/Images/Real-timeMonitoringScreen.jpg" alt="Real-time Monitoring Interface" width="70%" height="auto">
+  <img src="output/Images/Real-timeMonitoringScreen.jpg" alt="Real-time Monitoring Interface" width="15%" height="auto">
 </p>
 
 <h3 align="center">Data Analysis Interface</h3>
 <p align="center">
-  <img src="output/Images/DataAnalysisScreen.jpg" alt="Data Analysis Interface" width="70%" height="auto">
+  <img src="output/Images/DataAnalysisScreen.jpg" alt="Data Analysis Interface" width="15%" height="auto">
 </p>
 
 
