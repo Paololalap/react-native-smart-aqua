@@ -1,3 +1,4 @@
+
 <p align="center">
   <img src="assets/logo.png" alt="Logo" width="200" height="200">
 </p>
@@ -10,6 +11,7 @@
 
 <p align="center">
   <a href="#how-to-use">How To Use</a> •
+  <a href="#user-interface">User Interface</a> •
   <a href="#download">Download</a> •
   <a href="#license">License</a>
 </p>
@@ -34,6 +36,28 @@ $ npm start
 
 > **Note**
 > If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
+
+## User Interface
+<h3 align="center">Login Screen Interface</h3>
+<p align="center">
+  <img src="output/Images/LoginScreen.png" alt="Login Screen Interface" width="100%" height="auto">
+</p>
+
+<h3 align="center">Home Page and Menu Drawer Interface</h3>
+<p align="center">
+  <img src="output/Images/HomeScreen.png" alt="Home Page Interface" width="50%" height="auto">
+  <img src="output/Images/DrawerScreen.png" alt="Drawer Interface" width="50%" height="auto">
+</p>
+
+<h3 align="center">Real-time Monitoring Interface</h3>
+<p align="center">
+  <img src="output/Images/Real-timeMonitoringScreen.png" alt="Real-time Monitoring Interface" width="100%" height="auto">
+</p>
+
+<h3 align="center">Data Analysis Interface</h3>
+<p align="center">
+  <img src="output/Images/DataAnalysisScreen.png" alt="Data Analysis Interface" width="100%" height="auto">
+</p>
 
 
 ## Download
