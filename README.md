@@ -1,5 +1,5 @@
 <h1 align="center">
-  SmartAqua
+  Capstone Project: SmartAqua
 </h1>
 
 <h4 align="center">An application integrating Internet of Things to monitor the water quality of the aquaponics.</h4>
