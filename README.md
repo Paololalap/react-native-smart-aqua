@@ -38,24 +38,24 @@ $ npm start
 > If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
 
 ## User Interface
-<h3 align="center">Login Screen Interface</h3>
-<p align="center">
+<h3>Login Screen Interface</h3>
+<p>
   <img src="output/Images/LoginScreen.jpg" alt="Login Screen Interface" width="15%" height="auto">
 </p>
 
-<h3 align="center">Home Page and Menu Drawer Interface</h3>
-<p align="center">
+<h3>Home Page and Menu Drawer Interface</h3>
+<p>
   <img src="output/Images/HomeScreen.jpg" alt="Home Page Interface" width="15%" height="auto">
   <img src="output/Images/DrawerScreen.jpg" alt="Drawer Interface" width="15%" height="auto">
 </p>
 
-<h3 align="center">Real-time Monitoring Interface</h3>
-<p align="center">
+<h3>Real-time Monitoring Interface</h3>
+<p>
   <img src="output/Images/Real-timeMonitoringScreen.jpg" alt="Real-time Monitoring Interface" width="15%" height="auto">
 </p>
 
-<h3 align="center">Data Analysis Interface</h3>
-<p align="center">
+<h3>Data Analysis Interface</h3>
+<p>
   <img src="output/Images/DataAnalysisScreen.jpg" alt="Data Analysis Interface" width="15%" height="auto">
 </p>
 
