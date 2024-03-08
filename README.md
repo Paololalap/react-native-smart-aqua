@@ -25,7 +25,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 $ git clone https://github.com/Paololalap/react-native-smart-aqua.git
 
 # Go into the repository
-$ cd SmartAqua
+$ cd react-native-smart-aqua
 
 # Install dependencies
 $ npm install
