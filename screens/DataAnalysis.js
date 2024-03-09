@@ -24,8 +24,9 @@ const DataAnalysis = () => {
     setChartDimensions({ width: chartWidth, height: chartHeight });
 
     // Fetch data from the provided URL using axios
-    axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter')
-      .then(response => {
+    axios
+      .get("https://lspu.edu.ph/e-sentry/api/public/parameter")
+      .then((response) => {
         const fetchedData = response.data;
 
         // Extract and set measured data
@@ -33,13 +34,13 @@ const DataAnalysis = () => {
         const extractedDateData = [];
 
         for (const item of fetchedData) {
-          if (selectedOption === 'Temperature') {
+          if (selectedOption === "Temperature") {
             extractedData.push(parseFloat(item.Temperature)); // Parse Temperature as a float
-          } else if (selectedOption === 'pH') {
+          } else if (selectedOption === "pH") {
             extractedData.push(parseFloat(item.PH)); // Parse pH as a float
-          } else if (selectedOption === 'Turbidity') {
+          } else if (selectedOption === "Turbidity") {
             extractedData.push(parseFloat(item.TURBIDITY)); // Parse Turbidity as a float
-          } else if (selectedOption === 'Dissolved Oxygen') {
+          } else if (selectedOption === "Dissolved Oxygen") {
             extractedData.push(parseFloat(item.LDO)); // Parse Dissolved Oxygen as a float
           }
           extractedDateData.push(item.Date);
@@ -49,8 +50,9 @@ const DataAnalysis = () => {
         setDataY(extractedDateData);
 
         // Fetch predicted data from the new API using axios
-        axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/parameter/preds')
-          .then(predictedResponse => {
+        axios
+          .get("https://lspu.edu.ph/e-sentry/api/public/parameter/preds")
+          .then((predictedResponse) => {
             const fetchedPredictedData = predictedResponse.data;
 
             // Extract and set predicted data and bounds
@@ -59,19 +61,19 @@ const DataAnalysis = () => {
             const extractedPredictedLowerBounds = [];
 
             for (const item of fetchedPredictedData) {
-              if (selectedOption === 'Temperature') {
+              if (selectedOption === "Temperature") {
                 extractedPredictedData.push(parseFloat(item.temp_pred));
                 extractedPredictedUpperBounds.push(parseFloat(item.temp_upper));
                 extractedPredictedLowerBounds.push(parseFloat(item.temp_lower));
-              } else if (selectedOption === 'pH') {
+              } else if (selectedOption === "pH") {
                 extractedPredictedData.push(parseFloat(item.ph_pred));
                 extractedPredictedUpperBounds.push(parseFloat(item.ph_upper));
                 extractedPredictedLowerBounds.push(parseFloat(item.ph_lower));
-              } else if (selectedOption === 'Turbidity') {
+              } else if (selectedOption === "Turbidity") {
                 extractedPredictedData.push(parseFloat(item.turb_pred));
                 extractedPredictedUpperBounds.push(parseFloat(item.turb_upper));
                 extractedPredictedLowerBounds.push(parseFloat(item.turb_lower));
-              } else if (selectedOption === 'Dissolved Oxygen') {
+              } else if (selectedOption === "Dissolved Oxygen") {
                 extractedPredictedData.push(parseFloat(item.lod_pred));
                 extractedPredictedUpperBounds.push(parseFloat(item.lod_upper));
                 extractedPredictedLowerBounds.push(parseFloat(item.lod_lower));
@@ -84,23 +86,29 @@ const DataAnalysis = () => {
 
             // Calculate interpretation based on the data
             const latestMeasuredValue = extractedData[extractedData.length - 1];
-            const latestPredictedValue = extractedPredictedData[extractedPredictedData.length - 1];
+            const latestPredictedValue =
+              extractedPredictedData[extractedPredictedData.length - 1];
 
             if (latestMeasuredValue < latestPredictedValue) {
-              setInterpretation("The measured value is below the predicted value.");
+              setInterpretation(
+                "The measured value is below the predicted value."
+              );
             } else if (latestMeasuredValue > latestPredictedValue) {
-              setInterpretation("The measured value is above the predicted value.");
+              setInterpretation(
+                "The measured value is above the predicted value."
+              );
             } else {
-              setInterpretation("The measured value matches the predicted value.");
+              setInterpretation(
+                "The measured value matches the predicted value."
+              );
             }
           })
-          .catch(predictedError => {
-            console.error('Error fetching predicted data:', predictedError);
+          .catch((predictedError) => {
+            console.error("Error fetching predicted data:", predictedError);
           });
-
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
   }, [selectedOption]);
 

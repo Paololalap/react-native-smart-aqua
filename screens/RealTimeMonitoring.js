@@ -9,7 +9,9 @@ const RealTimeMonitoring = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/Arduino/joyparam');
+        const response = await axios.get(
+          "https://lspu.edu.ph/e-sentry/api/public/Arduino/joyparam"
+        );
         setData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);

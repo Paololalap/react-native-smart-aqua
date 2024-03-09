@@ -56,7 +56,9 @@ export default function App() {
 
   const fetchDataFromAPI = async () => {
     try {
-      const response = await axios.get('https://lspu.edu.ph/lakes-sustainable-development/api/public/Arduino/joyparam');
+      const response = await axios.get(
+        "https://lspu.edu.ph/e-sentry/api/public/Arduino/joyparam"
+      );
       return response.data[0]; // Assuming the API returns an array and you want the first entry
     } catch (error) {
       console.error('Error fetching data from API:', error);
